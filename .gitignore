@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Media, transcripts, and downloaded model weights
+recordings/
+transcripts/
+transcripts_timestamps/
+notes/
+models/
+*.mp3
+*.mp4
+*.m4a
+*.wav
+*.flac
+*.ogg
+*.opus
+*.mkv
+*.mov
+*.webm
+
+# Agent and local working files, except the committed skills
+.claude/*
+!.claude/skills/
+local/
+HANDOFF.md
+*.local.md

@@ -1,0 +1,47 @@
+[project]
+name = "recording-transcriber"
+version = "0.1.0"
+description = "Batch transcription of audio and video recordings with faster-whisper"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "faster-whisper>=1.0.0",
+    "python-dotenv>=1.0.1",
+    "tqdm>=4.67.3",
+]
+
+[project.optional-dependencies]
+# GPU libraries as wheels, so no system CUDA toolkit install is needed.
+# ctranslate2 requires the CUDA 12 and cuDNN 9 major versions.
+cuda = [
+    "nvidia-cublas-cu12>=12.3,<13",
+    "nvidia-cudnn-cu12>=9.1,<10",
+]
+
+[project.scripts]
+transcribe = "src.main:main"
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.pyright]
+include = ["src"]
+exclude = ["**/__pycache__", "**/.venv", "**/.*"]
+typeCheckingMode = "standard"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.411",
+    "pytest",
+]
